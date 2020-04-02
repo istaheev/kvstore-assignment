@@ -10,6 +10,11 @@ The application accepts some command line arguments. Run
 
 to get an overview of them.
 
+There is a simple client with the main purpose to test the service under high
+load:
+
+    go run cmd/client/client.go
+
 # Building
 
 The application uses [dep](https://github.com/golang/dep) for dependency management. Install the latest version via
@@ -23,4 +28,3 @@ or
 Then refresh dependencies:
 
     dep ensure
-
