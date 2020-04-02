@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/istaheev/kvstore-assignment/pkg/kvstore"
 )
 
 type keyGetHandler struct {
@@ -24,7 +25,7 @@ func (h keySetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // New initializes REST-like API
-func New() http.Handler {
+func New(kvs *kvstore.KeyValueStore) http.Handler {
 	var router = mux.NewRouter().StrictSlash(true)
 	router.Handle("/{key}", keyGetHandler{}).Methods(http.MethodGet)
 	router.Handle("/{key}", keySetHandler{}).Methods(http.MethodPost)

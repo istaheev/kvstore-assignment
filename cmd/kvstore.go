@@ -6,6 +6,7 @@ import (
 	"net"
 
 	"github.com/istaheev/kvstore-assignment/pkg/api"
+	"github.com/istaheev/kvstore-assignment/pkg/kvstore"
 )
 
 //
@@ -21,9 +22,11 @@ var listenAddr = flag.String(
 func main() {
 	flag.Parse()
 
+	kvs := kvstore.New()
+
 	log.Printf("Accepting HTTP requests on %s", *listenAddr)
 
-	server := api.NewServer(*listenAddr)
+	server := api.NewServer(*listenAddr, &kvs)
 
 	// Explicit listener creation is required since default ListenAndServe() tends
 	// to bind itself on tcp6 only
