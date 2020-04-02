@@ -15,6 +15,8 @@ type keyGetHandler struct {
 }
 
 func (h keyGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
 	key := mux.Vars(r)["key"]
 	value, ok := h.kvs.Get(key)
 	if !ok {
@@ -30,6 +32,8 @@ type keySetHandler struct {
 }
 
 func (h keySetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
 	key := mux.Vars(r)["key"]
 	valueArr, err := ioutil.ReadAll(r.Body)
 	if err != nil {
