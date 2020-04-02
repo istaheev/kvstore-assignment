@@ -78,12 +78,12 @@ func (kvs *KeyValueStore) Set(key, value string) {
 }
 
 // RemoveExpired removes expired items from the store.
-// No more than maxItems are removed in a single operation. Setting
-// maxItems to some reasonable, not so big, number allows to keep
+// No more than maxKeys are removed in a single operation. Setting
+// maxKeys to some reasonable, not so big, number allows to keep
 // the complexity of this operation close to O(1) while making it fast
 // enough.
 // It returns amount of keys removed.
-func (kvs *KeyValueStore) RemoveExpired(maxItems int) int {
+func (kvs *KeyValueStore) RemoveExpired(maxKeys int) int {
 	if kvs.expireAfter == 0 {
 		return 0
 	}
@@ -94,7 +94,7 @@ func (kvs *KeyValueStore) RemoveExpired(maxItems int) int {
 	now := time.Now()
 	removed := 0
 
-	for ; kvs.items.Len() > 0 && maxItems > 0; maxItems-- {
+	for ; kvs.items.Len() > 0 && maxKeys > 0; maxKeys-- {
 		lastElem := kvs.items.Back()
 		it := lastElem.Value.(item)
 

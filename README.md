@@ -1,3 +1,20 @@
+# Downloading
+
+    go get github.com/istaheev/kvstore-assignment
+
+The application uses [dep](https://github.com/golang/dep) for dependency
+management. Install the latest version via
+
+    sudo apt-get install go-dep
+
+or
+
+    https://github.com/golang/dep
+
+Then refresh dependencies:
+
+    dep ensure
+
 # Running
 
 The entry point is located in `cmd/kvstore.go`:
@@ -15,16 +32,8 @@ load:
 
     go run cmd/client/client.go
 
-# Building
+# Testing
 
-The application uses [dep](https://github.com/golang/dep) for dependency management. Install the latest version via
+    go test -v ./...
 
-    sudo apt-get install go-dep
 
-or
-
-    https://github.com/golang/dep
-
-Then refresh dependencies:
-
-    dep ensure

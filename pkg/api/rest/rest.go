@@ -50,7 +50,7 @@ func (h keySetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	value := string(valueArr)
 	h.kvs.Set(key, value)
-	w.Write([]byte("OK"))
+	w.Write([]byte("Key set"))
 }
 
 // New initializes REST-like API
