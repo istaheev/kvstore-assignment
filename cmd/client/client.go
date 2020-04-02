@@ -19,7 +19,7 @@ var server = flag.String(
 
 var numReaders = 8
 var numWriters = 2
-var maxKey uint64 = 16384
+var maxKey uint64 = 4294967296 // 2**32
 
 var numWrites uint64 = 0
 var numReads uint64 = 0
